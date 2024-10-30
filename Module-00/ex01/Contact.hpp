@@ -22,6 +22,7 @@ public:
     std::string getNickname();
     std::string getPhoneNumber();
     std::string getDarkestSecret();
+    bool isEmpty();
 };
 
 #endif
