@@ -1,54 +1,64 @@
 #include "phonebook.hpp"
-void displayContactRow(Contact contact, int index)
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+void displayContactRow(std::string firstName,
+                    std::string lastName,
+                    std::string nickname,
+                    std::string phoneNumber,
+                    std::string darkestSecret)
 {
-    std::cout << "| " << std::setw(10) << std::right << index
-              << " | " << std::setw(10) << std::right << contact.getFirstName()
-              << " | " << std::setw(10) << std::right << contact.getLastName()
-              << " | " << std::setw(10) << std::right << contact.getNickname()
-              << " | " << std::setw(10) << std::right << contact.getPhoneNumber()
-              << " |" << std::endl;
+    std::cout << "| " << std::setw(10) << std::right
+              << firstName.substr(0, 9) + (firstName.length() > 10 ? "." : "") << " | "
+              << std::setw(10) << std::right
+              << lastName.substr(0, 9) + (lastName.length() > 10 ? "." : "") << " | "
+              << std::setw(10) << std::right
+              << nickname.substr(0, 9) + (nickname.length() > 10 ? "." : "") << " | "
+              << std::setw(10) << std::right
+              << phoneNumber.substr(0, 10) << " | "
+              << std::setw(10) << std::right
+              << darkestSecret.substr(0, 9) + (darkestSecret.length() > 10 ? "." : "") << " |" << std::endl;
 }
+
 PhoneBook::PhoneBook()
 {
     index = 0;
 }
-std::string getInput(const std::string prompt)
+std::string getInput(std::string prompt)
 {
     std::string input;
     std::cout << prompt;
     std::getline(std::cin, input);
-    if (input.empty())
+    while (input.empty())
     {
-        std::cout << "This field cannot be empty. Please try again." << std::endl;
+        std::cout << RED "This field cannot be empty. Please try again." RESET << std::endl;
+        std::cout << prompt;
+        std::getline(std::cin, input);
     }
     return input;
-}
-bool isValidNumber(std::string input)
-{
-    for (char c : input)
-    {
-        if (!std::isdigit(c) && c != '-')
-        {
-            return false;
-        }
-    }
-    return !input.empty();
 }
 void addContactInfo(Contact &contact)
 {
     contact.setFirstName(getInput("Enter First Name: "));
     contact.setLastName(getInput("Enter Last Name: "));
     contact.setNickname(getInput("Enter Nickname: "));
-    contact.setPhoneNumber(getInput("Enter Phone Number: "));
+    while (true)
+    {
+        contact.setPhoneNumber(getInput("Enter Phone Number: "));
+        if (contact.getPhoneNumber().find_first_not_of("0123456789") && contact.getPhoneNumber().length() == 10)
+            break;
+        std::cout << RED "Invalid phone number. Please try again." RESET << std::endl;
+    }
     contact.setDarkestSecret(getInput("Enter Darkest Secret: "));
+    std::cout << GREEN "Contact added successfully!" RESET << std::endl;
 }
 void PhoneBook::addContact(void)
 {
     Contact newContact = Contact();
     addContactInfo(newContact);
-    index = (index + 1) % 8;
     contacts[index] = newContact;
-    index++;
+    index = (index + 1) % 8;
 }
 void PhoneBook::searchContact()
 {
@@ -57,19 +67,30 @@ void PhoneBook::searchContact()
     i = 0;
     if (index == 0)
     {
-        std::cout << "The phonebook is empty." << std::endl;
+        std::cout << YELLOW "The phonebook is empty." RESET << std::endl;
         return;
     }
-    std::cout << "|   Index  | First Name | Last Name | Nickname |   Phone  | Darkest Secret" << std::endl;
+    displayContactRow("First Name", "Last Name", "Nickname", "Phone Number", "Darkest Secret");
     while (i < index)
     {
-        displayContactRow(contacts[i], i + 1);
+        displayContactRow(contacts[i].getFirstName(),
+                          contacts[i].getLastName(),
+                          contacts[i].getNickname(),
+                          contacts[i].getPhoneNumber(),
+                          contacts[i].getDarkestSecret());
         i++;
     }
     std::string input = getInput("Enter the index of the contact to view in detail: ");
+    if (input.empty() || input.find_first_not_of("0123456789") != std::string::npos)
+    {
+        std::cout << RED "Invalid index, please try again." RESET << std::endl;
+        return;
+    }
     int n = std::stoi(input);
-    if (!n || n >= 8)
-        std::cout << "Invalid index, please try again." << std::endl;
+    if (n == 0)
+    {
+        std::cout << RED "Invalid index, please try again." RESET << std::endl;
+    }
     else
     {
         Contact curr_contact = contacts[n - 1];
