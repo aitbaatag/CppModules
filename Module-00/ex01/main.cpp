@@ -3,15 +3,14 @@
 
 void displayPrompt()
 {
-    std::cout << "Welcome to the PhoneBook!" << std::endl;
-    std::cout << "Please enter a command: ADD, SEARCH, or EXIT." << std::endl;
+    std::cout << GREEN "Welcome to the PhoneBook!" RESET<< std::endl;
+    std::cout << "valid command: " YELLOW ADD", " SEARCH ", " RESET "or " YELLOW EXIT RESET<< std::endl;
 }
 
 std::string getUserCommand()
 {
     std::string command;
 
-    displayPrompt();
     std::cout << "> ";
     std::getline(std::cin, command);
     if (command == ADD || command == SEARCH || command == EXIT)
@@ -20,9 +19,9 @@ std::string getUserCommand()
     }
     else
     {
-        std::cout << "Invalid command. Please enter ADD, SEARCH, or EXIT." << std::endl;
+        std::cout << RED "Invalid command Please enter a command " RESET  YELLOW ADD", " SEARCH ", " RESET "or " YELLOW EXIT RESET<< std::endl;
     }
-    return (NULL);
+    return (command);
 }
 
 int main()
@@ -30,6 +29,7 @@ int main()
     PhoneBook phonebook = PhoneBook();
     std::string cmd;
 
+    displayPrompt();
     while (true)
     {
         cmd = getUserCommand();
