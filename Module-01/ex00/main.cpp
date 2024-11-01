@@ -1,6 +1,6 @@
-#include "Zombie.h"
+#include "Zombie.hpp"
 
-int mian(void)
+int main(void)
 {
     Zombie* zombie = newZombie("Zombie");
     zombie->announce();
