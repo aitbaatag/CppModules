@@ -9,16 +9,12 @@ void displayContactRow(std::string firstName,
                     std::string phoneNumber,
                     std::string darkestSecret)
 {
-    std::cout << "| " << std::setw(10) << std::right
-              << firstName.substr(0, 9) + (firstName.length() > 10 ? "." : "") << " | "
-              << std::setw(10) << std::right
-              << lastName.substr(0, 9) + (lastName.length() > 10 ? "." : "") << " | "
-              << std::setw(10) << std::right
-              << nickname.substr(0, 9) + (nickname.length() > 10 ? "." : "") << " | "
-              << std::setw(10) << std::right
-              << phoneNumber.substr(0, 10) << " | "
-              << std::setw(10) << std::right
-              << darkestSecret.substr(0, 9) + (darkestSecret.length() > 10 ? "." : "") << " |" << std::endl;
+    std::cout << "| " << std::setw(10) << std::right << firstName.substr(0, 9) + (firstName.length() > 10 ? "." : "")
+              << " | " << std::setw(10) << std::right << lastName.substr(0, 9) + (lastName.length() > 10 ? "." : "")
+              << " | " << std::setw(10) << std::right << nickname.substr(0, 9) + (nickname.length() > 10 ? "." : "")
+              << " | " << std::setw(10) << std::right << phoneNumber.substr(0, 9) 
+              << " | " << std::setw(10) << std::right << darkestSecret.substr(0, 9) + (darkestSecret.length() > 10 ? "." : "")
+              << " |" << std::endl;
 }
 
 PhoneBook::PhoneBook()
