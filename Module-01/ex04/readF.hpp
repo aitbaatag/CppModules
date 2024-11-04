@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdlib>
 
 class ReadF
 {
@@ -13,5 +14,5 @@ class ReadF
         ReadF(std::string filename);
         ~ReadF(void);
         std::ifstream getReader(void);
-}
+};
 #endif

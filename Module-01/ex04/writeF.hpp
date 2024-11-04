@@ -4,12 +4,12 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdlib>
 
 class WriteF
 {
     private:
         std::ofstream writer;
-        std::string newname;
     public:
         WriteF(std::string filename);
         ~WriteF(void);
