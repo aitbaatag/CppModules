@@ -1,17 +1,27 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
-void my_replace(std::ifstream reader, std::ofstream writer std::string s1, std::string s2)
+void my_replace(std::ifstream reader, std::ofstream writer, const std::string s1, const std::string s2)
 {
-    std::string word;
-    while (reader >> word)
+    std::string line;
+
+    while (std::getline(reader, line))
     {
-        if (word.compare(s1) == 0)
+        size_t pos = 0;
+
+        while ((pos = line.find(s1, pos)) != std::string::npos)
+        {
+            writer << line.substr(0, pos);
             writer << s2;
-        else
-            writer << word;
+            pos += s1.length();
+            line = line.substr(pos);
+            pos = 0;
+        }
+        writer << line << '\n';
     }
 }
+
 int main(int argc, char **argv)
 {
     if (argc == 4)
