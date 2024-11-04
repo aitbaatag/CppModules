@@ -1,13 +1,19 @@
-#include "ReadF"
+#include "readF.hpp"
 
-Read::Read(std::string filename)
+ReadF::ReadF(std::string filename)
 {
-    reader(filename, std::ios::in);
+    reader.open(filename.c_str());
+    if (!reader.is_open())
+    {
+        std::cerr << "Error: could not open file " << filename << std::endl;
+        exit(1);
+    }
 }
-Read::~Read(std::string filename)
+ReadF::~ReadF(void)
 {
+    reader.close();
 }
-std::ifstream Read::getReader(void)
+std::ifstream ReadF::getReader(void)
 {
     return (reader);
 }

@@ -2,7 +2,7 @@ NAME = weapon
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS =  main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS =  readF.cpp writeF.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

@@ -1,6 +1,5 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include "writeF.hpp"
+#include "readF.hpp"
 
 void my_replace(std::ifstream reader, std::ofstream writer, const std::string s1, const std::string s2)
 {
@@ -29,10 +28,10 @@ int main(int argc, char **argv)
         std::string filename = argv[1];
         std::string s1 = argv[2];
         std::string s2 = argv[3];
-
-        readF readf = readF(filename);
-        writeF writef = writeF(readf.getbuffer, filename);
-        replace(readf.getbuffer, s1, s2);
+        std::string newname = filename + ".replace";
+        ReadF reader(filename);
+        WriteF writer(newname);
+        my_replace(reader.getReader(), writer.getWriter(), s1, s2);
     }
     else
     {
