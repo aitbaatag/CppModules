@@ -32,7 +32,7 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-    FunPtr curr_function = map[level];
+    void (Harl::*curr_function)(void) = map[level];
     if (curr_function)
     {
         (this->*curr_function)();
