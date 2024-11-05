@@ -1,7 +1,7 @@
-#include "writeF.hpp"
-#include "readF.hpp"
+#include "StreamWriter.hpp"
+#include "StreamReader.hpp"
 
-void my_replace(std::ifstream reader, std::ofstream writer, const std::string s1, const std::string s2)
+void my_replace(std::ifstream& reader, std::ofstream& writer, const std::string s1, const std::string s2)
 {
     std::string line;
 
@@ -9,7 +9,7 @@ void my_replace(std::ifstream reader, std::ofstream writer, const std::string s1
     {
         size_t pos = 0;
 
-        while ((pos = line.find(s1, pos)) != std::string::npos)
+        while (!s1.empty() && (pos = line.find(s1, pos)) != std::string::npos)
         {
             writer << line.substr(0, pos);
             writer << s2;
@@ -29,8 +29,8 @@ int main(int argc, char **argv)
         std::string s1 = argv[2];
         std::string s2 = argv[3];
         std::string newname = filename + ".replace";
-        ReadF reader(filename);
-        WriteF writer(newname);
+        StreamReader reader(filename);
+        StreamWriter writer(newname);
         my_replace(reader.getReader(), writer.getWriter(), s1, s2);
     }
     else

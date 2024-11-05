@@ -1,8 +1,8 @@
-NAME = weapon
+NAME = replace
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS =  readF.cpp writeF.cpp main.cpp
+SRCS =  StreamReader.cpp StreamWriter.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
