@@ -15,8 +15,8 @@ private:
     void info(void);
     void warning(void);
     void error(void);
-    typedef void (Harl::*FunPtr)(void);
+    // typedef void (Harl::*FunPtr)(void);
 private:
-    std::map<std::string, FunPtr> map;
+    std::map<std::string, void (Harl::*)(void)> map;
 };
 #endif
