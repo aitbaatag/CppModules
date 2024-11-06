@@ -64,7 +64,9 @@
         "deque": "cpp",
         "fstream": "cpp",
         "stack": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "__tree": "cpp",
+        "map": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "C_Cpp.dimInactiveRegions": false

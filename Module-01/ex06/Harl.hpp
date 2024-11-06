@@ -9,13 +9,12 @@ class Harl
 public:
     Harl(void);
     ~Harl(void);
-    void complain( std::string level );
-private:
+    void Filter( std::string level );
     void debug(void);
     void info(void);
     void warning(void);
     void error(void);
 private:
-    std::map<std::string, void (Harl::*)(void)> map;
+    std::map<std::string, int> map;
 };
 #endif
