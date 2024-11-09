@@ -100,7 +100,8 @@ void Account::displayStatus(void) const
 
 void Account::_displayTimestamp(void)
 {
-    time_t now = time(0);
+    time_t now;
+    time(&now);
     tm *ltm = localtime(&now);
     std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
 }

@@ -31,7 +31,7 @@ public:
 
 	Account( int initial_deposit );
 	~Account( void );
-
+	
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
