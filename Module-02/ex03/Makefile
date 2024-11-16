@@ -1,8 +1,8 @@
 NAME = program
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror #-std=c++98
 
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp bsp.cpp Point.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
