@@ -17,7 +17,9 @@ void my_replace(std::ifstream& reader, std::ofstream& writer, const std::string 
             line = line.substr(pos);
             pos = 0;
         }
-        writer << line << '\n';
+        writer << line;
+        if (!reader.eof())
+            writer << std::endl;
     }
 }
 

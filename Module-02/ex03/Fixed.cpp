@@ -10,7 +10,7 @@ Fixed::Fixed(int num)
 }
 Fixed::Fixed(float num)
 {
-    fixedPointValue = roundf(num * (1 << _fractionalBits)); // num * 256
+    fixedPointValue = roundf(num * 256);
 }
 
 Fixed::~Fixed()

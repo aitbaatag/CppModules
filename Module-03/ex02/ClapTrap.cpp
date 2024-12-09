@@ -21,8 +21,6 @@ ClapTrap::ClapTrap(const ClapTrap &claptrap)
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &claptrap)
 {
-    if (this == &claptrap)
-        return *this;
     this->name = claptrap.name;
     this->hit_point = claptrap.hit_point;
     this->energy_point = claptrap.energy_point;
@@ -44,6 +42,8 @@ void ClapTrap::attack(std::string const &target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     std::cout << "ClapTrap " << this->name << " take " << amount << " points of damage!" << std::endl;
+    if (this->hit_point < 0)
+        this->hit_point = 0;
     this->hit_point -= amount;
 }
 
