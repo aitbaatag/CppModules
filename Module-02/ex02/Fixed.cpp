@@ -6,11 +6,11 @@ Fixed::Fixed()
 }
 Fixed::Fixed(int num)
 {
-    fixedPointValue = num << _fractionalBits; // num * 256
+    fixedPointValue = num * 256;
 }
 Fixed::Fixed(float num)
 {
-    fixedPointValue = roundf(num * (1 << _fractionalBits)); // num * 256
+    fixedPointValue = roundf(num * 256);  
 }
 
 Fixed::~Fixed()
@@ -33,14 +33,14 @@ Fixed &Fixed::operator=(const Fixed &other)
 Fixed Fixed::operator*(const Fixed &other) const
 {
     Fixed result;
-    result.fixedPointValue = (fixedPointValue * other.fixedPointValue) >> _fractionalBits;
+    result.fixedPointValue = (fixedPointValue * other.fixedPointValue) >> _fractionalBits; // / 256 
     return result;
 }
 
 Fixed Fixed::operator/(const Fixed &other) const
 {
     Fixed result;
-    result.fixedPointValue = (fixedPointValue / other.fixedPointValue) << _fractionalBits;
+    result.fixedPointValue = (fixedPointValue / other.fixedPointValue) << _fractionalBits; // * 256 
     return result;
 }
 
@@ -144,10 +144,10 @@ void Fixed::setRawBits(int const raw)
 }
 float Fixed::toFloat(void) const
 {
-    return (float)fixedPointValue / (1 << _fractionalBits); // fixedPointValue / 256
+    return (float)fixedPointValue / 256.0;
 }
 
 int Fixed::toInt(void) const
 {
-    return fixedPointValue >> _fractionalBits;
+    return (int)fixedPointValue / 256;
 }

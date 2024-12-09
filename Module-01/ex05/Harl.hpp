@@ -15,7 +15,6 @@ private:
     void info(void);
     void warning(void);
     void error(void);
-private:
     std::map<std::string, void (Harl::*)(void)> map;
 };
 #endif
