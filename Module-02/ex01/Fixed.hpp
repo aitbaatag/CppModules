@@ -7,7 +7,7 @@ class Fixed
 {
 private:
     int fixedPointValue;
-    static const int _fractionalBits = 8; // is mean how many bits after the point (how many bits represent the fractional part)
+    static const int _fractionalBits = 8;
 public:
     Fixed();
     ~Fixed();
