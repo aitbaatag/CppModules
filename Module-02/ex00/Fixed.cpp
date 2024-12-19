@@ -19,7 +19,7 @@ Fixed::Fixed(Fixed &other)
 
 Fixed& Fixed::operator=(Fixed& other)
 {
-    std::cout << "Assignation operator called" << std::endl;
+    std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)
         fixedPointValue = other.getRawBits();
     return *this;
