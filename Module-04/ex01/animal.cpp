@@ -2,20 +2,20 @@
 
 
 Animal::Animal() {
-    std::cout << "Animal Constructor" << std::endl;
+    std::cout << GREEN "Animal Constructor" RESET << std::endl;
 }
 
 Animal::~Animal() {
-    std::cout << "Animal Destructor" << std::endl;
+    std::cout << RED "Animal Destructor" RESET << std::endl;
 }
 
 Animal::Animal(const Animal &copy) {
     this->type = copy.type;
-    std::cout << "Animal Copy Constructor" << std::endl;
+    std::cout << GREEN "Animal Copy Constructor" RESET << std::endl;
 }
 
 Animal &Animal::operator = (const Animal &copy) {
-    std::cout << "Animal Assignment Operator" << std::endl;
+    std::cout << GREEN "Animal Assignment Operator" RESET << std::endl;
     this->type = copy.type;
     return *this;
 }
