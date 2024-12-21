@@ -10,10 +10,12 @@ Dog::~Dog() {
 }
 
 Dog::Dog(const Dog &copy) {
-    *this = copy;
+    this->type = copy.type;
+    std::cout << "Dog Copy Constructor" << std::endl;
 }
 
 Dog &Dog::operator = (const Dog &copy) {
+    std::cout << "Dog Assignment Operator" << std::endl;
     this->type = copy.type;
     return *this;
 }

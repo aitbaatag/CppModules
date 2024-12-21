@@ -16,7 +16,11 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(const ClapTrap &claptrap)
 {
-    *this = claptrap;
+    std::cout << GREEN "ClapTrap copy constructor called" RESET << std::endl;
+    this->name = claptrap.name;
+    this->hit_point = claptrap.hit_point;
+    this->energy_point = claptrap.energy_point;
+    this->attack_damage = claptrap.attack_damage;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &claptrap)
