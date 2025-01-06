@@ -22,13 +22,14 @@ Character::~Character() {
     for (int i = 0; i < 4; i++)
         if (_inventory[i])
             delete _inventory[i];
+    std::cout << "character name: " << _name << " destructor called" << std::endl;
 }
 
 std::string const &Character::getName() const {
     return _name;
 }
 
-void Character::equip(AMateria *m) {
+void Character::equip(AMateria *m) { // means to prepare (a weapon or piece of equipment) for use
     for (int i = 0; i < 4; i++)
         if (!_inventory[i]) {
             _inventory[i] = m;
@@ -36,7 +37,7 @@ void Character::equip(AMateria *m) {
         }
 }
 
-void Character::unequip(int idx) {
+void Character::unequip(int idx) { // means to remove (a weapon or piece of equipment) from use
     if (idx < 0 || idx >= 4 || !_inventory[idx])
         return;
     _inventory[idx] = NULL;

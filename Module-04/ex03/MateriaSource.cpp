@@ -21,6 +21,7 @@ MateriaSource::~MateriaSource() {
     for (int i = 0; i < 4; i++)
         if (_source[i])
             delete _source[i];
+    std::cout << "MateriaSource destructor called" << std::endl;
 }
 
 void MateriaSource::learnMateria(AMateria *m) {

@@ -18,6 +18,9 @@ Cat::~Cat() {
 
 Cat::Cat(const Cat &copy) {
     this->type = copy.type;
+
+    if (this->brain != NULL)
+        delete this->brain;
     this->brain = new Brain();
     if (this->brain == NULL)
     {
@@ -31,6 +34,8 @@ Cat::Cat(const Cat &copy) {
 Cat &Cat::operator = (const Cat &copy) {
     std::cout << GREEN "Cat Assignment Operator" RESET << std::endl;
     this->type = copy.type;
+    if (this->brain != NULL)
+        delete this->brain;
     this->brain = new Brain();
     if (this->brain == NULL)
     {

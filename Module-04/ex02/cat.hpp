@@ -2,6 +2,7 @@
 #define CAT_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include "animal.hpp"
 #include "Brain.hpp"
 

@@ -9,8 +9,8 @@ int main()
 
     for (int i = 0; i < 10; i++)
     {
-        dog->setIdea(i, dog->getType() + " Idea " + std::to_string(i));
-        cat->setIdea(i, cat->getType() + " Idea " + std::to_string(i));
+        dog->setIdea(i, dog->getType() + " Idea ");
+        cat->setIdea(i, cat->getType() + " Idea ");
     }
 
     for (int i = 0; i < 10; i++)
