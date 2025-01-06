@@ -1,4 +1,6 @@
 #include "AMateria.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 AMateria::AMateria() : _type("default") {}
 AMateria::AMateria(std::string const & type) : _type(type) {}
@@ -21,9 +23,13 @@ std::string const& AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-    (void)target;
+    std::cout << "* uses some materia on " << target.getName() << " *" << std::endl;
 }
 
 AMateria* AMateria::clone() const {
-    return new AMateria(*this);
+    if (_type == "ice")
+        return new Ice();
+    else if (_type == "cure")
+        return new Cure();
+    return NULL;
 }

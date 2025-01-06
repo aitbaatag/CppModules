@@ -18,6 +18,8 @@ Dog::~Dog() {
 
 Dog::Dog(const Dog &copy) {
     this->brain = new Brain();
+    if (this->brain != NULL)
+        delete this->brain;
     if (this->brain == NULL)
     {
         std::cout << RED "Memory allocation failed" RESET << std::endl;
@@ -31,6 +33,8 @@ Dog::Dog(const Dog &copy) {
 Dog &Dog::operator = (const Dog &copy) {
     std::cout << GREEN "Dog Assignment Operator" RESET << std::endl;
     this->brain = new Brain();
+    if (this->brain != NULL)
+        delete this->brain;
     if (this->brain == NULL)
     {
         std::cout << RED "Memory allocation failed" RESET << std::endl;
