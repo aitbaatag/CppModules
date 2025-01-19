@@ -12,8 +12,9 @@
 #define RED "\e[1;31m"
 #define RESET "\e[0m"
 class Brain{
-    public:
+    private:
         std::string ideas[100];
+    public:
         Brain();
         Brain(const Brain &brain);
         ~Brain();

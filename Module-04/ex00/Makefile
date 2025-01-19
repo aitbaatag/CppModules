@@ -2,7 +2,7 @@ NAME = program
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp cat.cpp dog.cpp animal.cpp
+SRCS = main.cpp cat.cpp dog.cpp animal.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

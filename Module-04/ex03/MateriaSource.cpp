@@ -12,8 +12,15 @@ MateriaSource::MateriaSource(const MateriaSource &other) {
 MateriaSource &MateriaSource::operator=(const MateriaSource &other) {
     if (this == &other)
         return *this;
-    for (int i = 0; i < 4; i++)
-        _source[i] = other._source[i];
+    // deep copy
+    for (int i = 0; i < 4; i++) {
+        if (_source[i])
+            delete _source[i];
+        if (other._source[i])
+            _source[i] = other._source[i]->clone();
+        else
+            _source[i] = NULL;
+    }
     return *this;
 }
 
