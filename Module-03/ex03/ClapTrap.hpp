@@ -22,8 +22,8 @@ public:
     ClapTrap(const ClapTrap &claptrap);
     ClapTrap &operator=(const ClapTrap &claptrap);
     ~ClapTrap();
-    virtual void attack(std::string const & target);
-    virtual void takeDamage(unsigned int amount);
-    virtual void beRepaired(unsigned int amount);
+    void attack(std::string const & target);
+    void takeDamage(unsigned int amount);
+    void beRepaired(unsigned int amount);
 };
 #endif

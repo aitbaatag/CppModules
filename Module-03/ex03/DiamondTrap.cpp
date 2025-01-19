@@ -1,19 +1,17 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap(): ClapTrap("defaultDT_clap_trap")
 {
     std::cout << GREEN "DiamondTrap default constructor called" RESET << std::endl;
-    this->_name = "default_clap_name";
     this->name = "default";
     this->hit_point = 100;
     this->energy_point = 50;
     this->attack_damage = 30;
 }
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_trap")
 {
     std::cout << GREEN "DiamondTrap constructor called" RESET << std::endl;
-    this->_name = name + "_clap_name";
     this->name = name;
     this->hit_point = 100;
     this->energy_point = 50;

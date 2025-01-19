@@ -6,7 +6,8 @@
 int main()
 {
     IMateriaSource *src = new MateriaSource();
-    src->learnMateria(new Ice()); // learnMateria() will store the materia in the first available slot
+
+    src->learnMateria(new Ice()); // learnMateria() will store the materia in the inventory
     src->learnMateria(new Cure());
     ICharacter *me = new Character("me");
     AMateria *tmp;
