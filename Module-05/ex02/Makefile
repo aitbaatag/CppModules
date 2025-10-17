@@ -1,4 +1,5 @@
 
+
 cc = g++
 cflags = -Wall -Wextra -std=c++98
 src = main.cpp Bureaucrat.cpp Form.cpp

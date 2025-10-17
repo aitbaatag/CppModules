@@ -10,16 +10,20 @@ private:
   int grade;
 
 public:
+  Bureaucrat();
   Bureaucrat(const std::string &name, int grade);
-  Bureaucrat(const Bureaucrat &other);            // copy constructor
-  Bureaucrat &operator=(const Bureaucrat &other); // copy assignment operator
-  ~Bureaucrat();                                  // destructor
+  Bureaucrat(const Bureaucrat &other);
+  Bureaucrat &operator=(const Bureaucrat &other);
+  ~Bureaucrat();
+
   // getters
   const std::string &getName() const;
   int getGrade() const;
+
   // increment and decrement
   void incrementGrade();
   void decrementGrade();
+
   // Exceptions
   class GradeTooHighException : public std::exception {
   public:

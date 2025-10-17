@@ -1,10 +1,12 @@
+
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
+
 class Bureaucrat {
 private:
   const std::string name;
@@ -31,7 +33,10 @@ public:
     const char *what() const throw();
   };
   // Add signForm method
-  void signForm(Form &form) const;
+  void signForm(AForm &form) const;
+
+  // new method to execute a form
+  void executeForm(const AForm &form) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
