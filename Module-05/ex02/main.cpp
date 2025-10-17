@@ -8,24 +8,24 @@
 
 int main() {
   try {
-    Bureaucrat bob("Bob", 1);
-    Bureaucrat alice("Alice", 150);
+    Bureaucrat Khalid("Khalid", 1);
+    Bureaucrat Hicham("Hicham", 150);
 
     ShrubberyCreationForm shrub("home");
     RobotomyRequestForm robot("Bender");
     PresidentialPardonForm pardon("Marvin");
 
     std::cout << "\n=== Attempt signing forms ===\n";
-    alice.signForm(shrub); // Should fail
-    bob.signForm(shrub);   // Should succeed
-    bob.signForm(robot);   // Should succeed
-    bob.signForm(pardon);  // Should succeed
+    Hicham.signForm(shrub);  // Should fail
+    Khalid.signForm(shrub);  // Should succeed
+    Khalid.signForm(robot);  // Should succeed
+    Khalid.signForm(pardon); // Should succeed
 
     std::cout << "\n=== Attempt executing forms ===\n";
-    alice.executeForm(shrub); // Should fail
-    bob.executeForm(shrub);   // Should succeed
-    bob.executeForm(robot);   // Should succeed (50% chance fail)
-    bob.executeForm(pardon);  // Should succeed
+    Hicham.executeForm(shrub);  // Should fail
+    Khalid.executeForm(shrub);  // Should succeed
+    Khalid.executeForm(robot);  // Should succeed (50% chance fail)
+    Khalid.executeForm(pardon); // Should succeed
 
     std::cout << "\n=== Test exceptions ===\n";
     PresidentialPardonForm invalidForm("X");

@@ -2,7 +2,8 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
-#include <iostream>
+#include "Bureaucrat.hpp"
+#include <stdlib.h>
 
 class RobotomyRequestForm : public AForm {
 private:
@@ -14,6 +15,8 @@ public:
   RobotomyRequestForm(const RobotomyRequestForm &other);
   RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
   ~RobotomyRequestForm();
+
+  void execute(const Bureaucrat &executor) const;
 };
 
 #endif

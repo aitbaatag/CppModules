@@ -1,8 +1,6 @@
-
-
 cc = g++
 cflags = -Wall -Wextra -std=c++98
-src = main.cpp Bureaucrat.cpp Form.cpp
+src = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 obj = $(src:.cpp=.o)
 name = Bureaucrat
 

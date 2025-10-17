@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include <string>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("ShrubberyCreationForm", 145, 137), target("Default") {}
@@ -19,17 +20,33 @@ ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
-  if (!getIsSigned())
-    throw AForm::GradeTooLowException();
-  if (executor.getGrade() > getGradeToExecute())
-    throw AForm::GradeTooLowException();
+// form action: create a file name <target>_shrubbery and write ASCII trees to
+// it
 
-  std::ofstream outfile(target + "_shrubbery");
-  if (!outfile) {
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
+  if (!getIsSigned()) {
+    throw AForm::GradeTooLowException();
+  }
+  if (executor.getGrade() > getGradeToExecute()) {
+    throw AForm::GradeTooLowException();
+  }
+
+  std::string filename = target + "_shrubbery";
+  std::ofstream outFile(filename.c_str());
+  if (!outFile) {
     std::cerr << "Error creating file: " << target + "_shrubbery" << std::endl;
     return;
   }
 
-  outfile.close();
+  outFile << "       _-_\n"
+             "    /~~   ~~\\\n"
+             " /~~         ~~\\\n"
+             "{               }\n"
+             " \\  _-     -_  /\n"
+             "   ~  \\\\ //  ~\n"
+             "_- -   | | _- _\n"
+             "  _ -  | |   -_\n"
+             "      // \\\\\n";
+
+  outFile.close();
 }
