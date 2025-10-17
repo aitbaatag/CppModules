@@ -1,3 +1,4 @@
+
 #include "Intern.hpp"
 
 Intern::Intern() {}
@@ -22,7 +23,7 @@ AForm *Intern::makeForm(const std::string &formName,
   for (int i = 0; i < 3; ++i) {
     if (formName == formNames[i]) {
       std::cout << "Intern creates " << formName << std::endl;
-      return creators[i](target);
+      return (this->*creators[i])(target);
     }
   }
 

@@ -1,3 +1,4 @@
+
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
@@ -9,11 +10,11 @@
 
 class Intern {
 private:
-  static AForm *createShrubbery(const std::string &target);
-  static AForm *createRobotomy(const std::string &target);
-  static AForm *createPresidential(const std::string &target);
+  AForm *createShrubbery(const std::string &target);
+  AForm *createRobotomy(const std::string &target);
+  AForm *createPresidential(const std::string &target);
 
-  typedef AForm *(*FormCreator)(const std::string &target);
+  typedef AForm *(Intern::*FormCreator)(const std::string &target);
 
 public:
   Intern();
