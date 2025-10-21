@@ -1,5 +1,16 @@
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &other) { (void)other; }
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
+  (void)other;
+  return *this;
+}
+
+ScalarConverter::~ScalarConverter() {}
+
 void ScalarConverter::convert(const std::string &literal) {
 
   ConvertFunc converfunc[] = {
@@ -8,26 +19,6 @@ void ScalarConverter::convert(const std::string &literal) {
       &ScalarConverter::convertPseudoLiteral};
 
   ScalarConverter::LiteralType literalType = GetLiteralType(literal);
-  std::cout << "Detected literal type: ";
-  switch (literalType) {
-  case CHAR:
-    std::cout << "CHAR" << std::endl;
-    break;
-  case INT:
-    std::cout << "INT" << std::endl;
-    break;
-  case FLOAT:
-    std::cout << "FLOAT" << std::endl;
-    break;
-  case DOUBLE:
-    std::cout << "DOUBLE" << std::endl;
-    break;
-  case PSEUDO_LITERAL:
-    std::cout << "PSEUDO_LITERAL" << std::endl;
-    break;
-  default:
-    break;
-  }
   if (literalType == ScalarConverter::INVALID) {
     std::cout << "Error: Invalid literal" << std::endl;
     return;
@@ -76,8 +67,10 @@ ScalarConverter::Ispseudo_literals(const std::string &literal) {
 // char literals
 ScalarConverter::LiteralType
 ScalarConverter::IsChar_literals(const std::string &literal) {
-  if (literal.length() == 1 && isprint(literal[0]) && !isdigit(literal[0]))
+  if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'' &&
+      isprint(literal[1]))
     return ScalarConverter::CHAR;
+
   return ScalarConverter::SKIP;
 }
 
@@ -85,6 +78,8 @@ ScalarConverter::IsChar_literals(const std::string &literal) {
 ScalarConverter::LiteralType
 ScalarConverter::IsInt_literals(const std::string &literal) {
   size_t i = 0;
+  if (literal.empty())
+    return ScalarConverter::SKIP;
   if (literal[i] == '-' || literal[i] == '+')
     i++;
   while (i < literal.length()) {
@@ -100,6 +95,10 @@ ScalarConverter::LiteralType
 ScalarConverter::Isfloat_literals(const std::string &literal) {
   size_t i = 0;
   bool dot_found = false;
+
+  if (literal.empty())
+    return ScalarConverter::SKIP;
+
   if (literal[i] == '-' || literal[i] == '+')
     i++;
   while (i < literal.length()) {
@@ -122,6 +121,10 @@ ScalarConverter::LiteralType
 ScalarConverter::IsDoublet_literals(const std::string &literal) {
   size_t i = 0;
   bool dot_found = false;
+
+  if (literal.empty())
+    return ScalarConverter::SKIP;
+
   if (literal[i] == '-' || literal[i] == '+')
     i++;
   while (i < literal.length()) {
