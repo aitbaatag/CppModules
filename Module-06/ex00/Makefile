@@ -1,9 +1,9 @@
 
 cc = g++
 cflags = -Wall -Wextra -std=c++98
-src = main.cpp Bureaucrat.cpp
+src = main.cpp ScalarConverter.cpp 
 obj = $(src:.cpp=.o)
-name = Bureaucrat
+name = converter
 
 all: $(name)
 

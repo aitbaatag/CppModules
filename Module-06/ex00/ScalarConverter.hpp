@@ -2,9 +2,9 @@
 #define SCALARCONVERTER_HPP
 
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <string>
-
 class ScalarConverter {
 public:
   static void convert(const std::string &literal);
