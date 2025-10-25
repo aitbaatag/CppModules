@@ -1,36 +1,27 @@
+
 #include "Array.hpp"
 #include <iostream>
 
 int main() {
+  Array<int> numbers(5);
+  for (unsigned int i = 0; i < numbers.getSize(); i++)
+    numbers[i] = i * 2;
+
+  for (unsigned int i = 0; i < numbers.getSize(); i++)
+    std::cout << numbers[i] << " ";
+  std::cout << std::endl;
+
   try {
-    Array<int> intArray(5);
-    for (size_t i = 0; i < intArray.getSize(); i++) {
-      intArray[i] = i * 10;
-    }
-
-    std::cout << "Integer Array: ";
-    for (size_t i = 0; i < intArray.getSize(); i++) {
-      std::cout << intArray[i] << " ";
-    }
-    std::cout << std::endl;
-
-    Array<std::string> strArray(3);
-    strArray[0] = "Hello";
-    strArray[1] = "World";
-    strArray[2] = "!";
-
-    std::cout << "String Array: ";
-    for (size_t i = 0; i < strArray.getSize(); i++) {
-      std::cout << strArray[i] << " ";
-    }
-    std::cout << std::endl;
-
-    // throw an exception
-    // std::cout << intArray[10] << std::endl;
-
-  } catch (const std::out_of_range &e) {
+    std::cout << numbers[10] << std::endl; // throws
+  } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
 
-  return 0;
+  Array<std::string> strings(3);
+  strings[0] = "Hello";
+  strings[1] = "World";
+  strings[2] = "!";
+
+  for (unsigned int i = 0; i < strings.getSize(); i++)
+    std::cout << strings[i] << std::endl;
 }

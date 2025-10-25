@@ -1,8 +1,10 @@
+
 #include "iter.hpp"
 #include <iostream>
 
 void printInt(int &n) { std::cout << n << " "; }
-void incrementInt(int &n) { n++; }
+
+void printConstInt(const int &n) { std::cout << n << " "; }
 
 int main() {
   int arr[] = {1, 2, 3, 4, 5};
@@ -12,9 +14,10 @@ int main() {
   iter(arr, length, printInt);
   std::cout << std::endl;
 
-  iter(arr, length, incrementInt);
-  std::cout << "Incremented array elements: ";
-  iter(arr, length, printInt);
+  // Test with const array
+  const int constArr[] = {10, 20, 30, 40};
+  std::cout << "Const array elements: ";
+  iter(constArr, 4, printConstInt);
   std::cout << std::endl;
 
   return 0;
