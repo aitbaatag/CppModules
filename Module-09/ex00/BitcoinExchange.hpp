@@ -1,6 +1,7 @@
 #ifndef BUITCOINEXCHANGE_HPP
 #define BUITCOINEXCHANGE_HPP
 
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <map>

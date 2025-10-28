@@ -1,8 +1,10 @@
+
 #include "BitcoinExchange.hpp"
+#include <iostream>
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cerr << "Usage: " << argv[0] << " <input_file>" << std::endl;
+    std::cerr << "Error: could not open file." << std::endl;
     return 1;
   }
 
@@ -10,10 +12,10 @@ int main(int argc, char **argv) {
   const std::string inputFile = argv[1];
 
   try {
-    BitcoinExchange bitcoinExchange(dataFile);
-    // bitcoinExchange.processInputFile(inputFile);
+    BitcoinExchange btc(dataFile);
+    btc.processInputFile(inputFile);
   } catch (const std::exception &e) {
-    std::cerr << "Error: " << e.what() << std::endl;
+    std::cerr << e.what() << std::endl;
     return 1;
   }
 
