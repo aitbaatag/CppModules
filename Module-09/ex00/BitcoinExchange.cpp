@@ -31,7 +31,12 @@ void BitcoinExchange::loadExchangeRates(const std::string &dataFile) {
     std::string rateStr;
 
     if (std::getline(ss, date, ',') && std::getline(ss, rateStr)) {
-      double rate = std::strtod(rateStr.c_str(), NULL);
+      char *end;
+      double rate = std::strtod(rateStr.c_str(), &end);
+      if (*end != '\0')
+        throw std::runtime_error("Error: invalid rate format in data file.");
+      if (!isValidDate(date))
+        throw std::runtime_error("Error: invalid date format in data file.");
       exchangeRates[date] = rate;
     }
   }
