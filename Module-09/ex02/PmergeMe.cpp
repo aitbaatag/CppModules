@@ -54,7 +54,7 @@ std::vector<int> PmergeMe::recursiveVectorSort(const std::vector<int> &input) {
 
   // TODO : call function to create pairs and sort them function name is
   // createAndSortPairs
-  std::vector<std::pair<int, int> > pairs;
+  std::vector<std::pair<int, int>> pairs;
   for (size_t i = 0; i < pairCount; ++i) {
     int a = input[i * 2];
     int b = input[i * 2 + 1];
@@ -123,7 +123,7 @@ std::deque<int> PmergeMe::recursiveDequeSort(const std::deque<int> &input) {
   size_t pairCount = input.size() / 2;
 
   // Create and sort pairs
-  std::deque<std::pair<int, int> > pairs;
+  std::deque<std::pair<int, int>> pairs;
   for (size_t i = 0; i < pairCount; ++i) {
     int a = input[i * 2];
     int b = input[i * 2 + 1];
