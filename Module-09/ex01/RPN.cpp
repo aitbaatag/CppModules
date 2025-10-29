@@ -45,7 +45,6 @@ int RPN::evaluate(const std::string &expression) const {
       }
       tempStack.push(result);
     } else {
-      // Check token is a single valid integer (0–9)
       if (token.size() != 1 || token[0] < '0' || token[0] > '9')
         throw std::runtime_error("Error: bad input.");
       int value = token[0] - '0';

@@ -2,7 +2,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 
-NAME = program 
+NAME = Mstack
 SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
