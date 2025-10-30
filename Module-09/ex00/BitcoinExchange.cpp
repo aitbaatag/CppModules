@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(const std::string &dataFile) {
   loadExchangeRates(dataFile);
@@ -23,8 +24,7 @@ void BitcoinExchange::loadExchangeRates(const std::string &dataFile) {
   }
 
   std::string line;
-  std::getline(file, line); // Skip header
-
+  std::getline(file, line);
   while (std::getline(file, line)) {
     std::istringstream ss(line);
     std::string date;
@@ -58,34 +58,38 @@ double BitcoinExchange::getExchangeRate(const std::string &date) const {
 }
 
 bool BitcoinExchange::isValidDate(const std::string &date) const {
-    if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-        return false;
+  if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+    return false;
 
-    int year, month, day;
-    std::istringstream ss(date);
-    char dash1, dash2;
+  int year, month, day;
+  std::istringstream ss(date);
+  char dash1, dash2;
 
-    if (!(ss >> year >> dash1 >> month >> dash2 >> day) || dash1 != '-' || dash2 != '-')
-        return false;
+  if (!(ss >> year >> dash1 >> month >> dash2 >> day) || dash1 != '-' ||
+      dash2 != '-')
+    return false;
 
-    if (year < 2009 || year > 2025)
-        return false;
+  if (year < 2009)
+    return false;
 
-    if (month < 1 || month > 12)
-        return false;
+  if (month < 1 || month > 12)
+    return false;
 
-    if (year == 2009 && month == 1 && day == 1)
-        return false;
+  if (year == 2009 && month == 1 && day == 1)
+    return false;
 
-    int daysInMonth[] = {
-        31,
-        (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ? 29 : 28,
-        31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int daysInMonth[] = {
+      31, (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ? 29 : 28,
+      31, 30,
+      31, 30,
+      31, 31,
+      30, 31,
+      30, 31};
 
-    if (day < 1 || day > daysInMonth[month - 1])
-        return false;
+  if (day < 1 || day > daysInMonth[month - 1])
+    return false;
 
-    return true;
+  return true;
 }
 
 bool BitcoinExchange::isValidValue(const std::string &valueStr,
@@ -93,8 +97,10 @@ bool BitcoinExchange::isValidValue(const std::string &valueStr,
   char *end;
   value = std::strtod(valueStr.c_str(), &end);
 
-  if (*end != '\0')
+  if (*end != '\0') {
+    std::cerr << "Error: invalid value." << std::endl;
     return false;
+  }
 
   if (value < 0) {
     std::cerr << "Error: not a positive number." << std::endl;
@@ -115,7 +121,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile) {
   }
 
   std::string line;
-  std::getline(file, line); // Skip header line
+  std::getline(file, line);
 
   while (std::getline(file, line)) {
     if (line.empty())
@@ -142,6 +148,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile) {
     try {
       double rate = getExchangeRate(date);
       double result = value * rate;
+      std::cout << std::fixed << std::setprecision(1);
       std::cout << date << " => " << value << " = " << result << std::endl;
     } catch (const std::exception &e) {
       std::cerr << e.what() << std::endl;
