@@ -58,17 +58,34 @@ double BitcoinExchange::getExchangeRate(const std::string &date) const {
 }
 
 bool BitcoinExchange::isValidDate(const std::string &date) const {
-  if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-    return false;
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+        return false;
 
-  int year = std::atoi(date.substr(0, 4).c_str());
-  int month = std::atoi(date.substr(5, 2).c_str());
-  int day = std::atoi(date.substr(8, 2).c_str());
+    int year, month, day;
+    std::istringstream ss(date);
+    char dash1, dash2;
 
-  if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31)
-    return false;
+    if (!(ss >> year >> dash1 >> month >> dash2 >> day) || dash1 != '-' || dash2 != '-')
+        return false;
 
-  return true;
+    if (year < 2009 || year > 2025)
+        return false;
+
+    if (month < 1 || month > 12)
+        return false;
+
+    if (year == 2009 && month == 1 && day == 1)
+        return false;
+
+    int daysInMonth[] = {
+        31,
+        (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ? 29 : 28,
+        31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (day < 1 || day > daysInMonth[month - 1])
+        return false;
+
+    return true;
 }
 
 bool BitcoinExchange::isValidValue(const std::string &valueStr,
