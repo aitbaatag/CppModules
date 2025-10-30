@@ -37,19 +37,16 @@ private:
   std::vector<int> recursiveVectorSort(const std::vector<int> &input);
   std::deque<int> recursiveDequeSort(const std::deque<int> &input);
 
-  void insertSorted(std::vector<int> &sorted, int value);
-  void insertSorted(std::deque<int> &sorted, int value);
-
-  std::vector<std::pair<int, int>>
+  std::vector<std::pair<int, int> >
   createAndSortPairsVector(const std::vector<int> &input);
 
-  std::deque<std::pair<int, int>>
+  std::deque<std::pair<int, int> >
   createAndSortPairsDeque(const std::deque<int> &input);
 
   std::vector<int>
-  ExtractLargerElementsVector(const std::vector<std::pair<int, int>> &pairs);
+  ExtractLargerElementsVector(const std::vector<std::pair<int, int> > &pairs);
   std::deque<int>
-  ExtractLargerElementsDeque(const std::deque<std::pair<int, int>> &pairs);
+  ExtractLargerElementsDeque(const std::deque<std::pair<int, int> > &pairs);
 };
 
 #endif // PMERGEME_HPP
